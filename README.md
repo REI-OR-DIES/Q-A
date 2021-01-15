@@ -1,8 +1,12 @@
 # GAR-FEC-Q-A
 
--Clone this repo
+-Currently configured to run on Port 3007
 
--npm install
+To install dependencies
+  -npm install
+
+-To start server
+  -npm start to run server
 
 -To seed database:
   -npm run seed
