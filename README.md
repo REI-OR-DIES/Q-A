@@ -1,9 +1,17 @@
 # GAR-FEC-Q-A
 
-Clone this repo
+-Currently configured to run on Port 3007
 
-npm install
+To install dependencies
+  -npm install
 
-To seed database:
-  npm run seed
+-To start server
+  -npm start to run server
+
+-To seed database:
+  -npm run seed
+
+## API Methods
+-GET /api/questions
+  -returns array containing all question objects
 

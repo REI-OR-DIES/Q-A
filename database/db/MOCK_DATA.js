@@ -1,4 +1,4 @@
-
+/* eslint-disable */
 const mockData = [{"questionAuthor":"ccorfield0","questionTitle":"diam id ornare imperdiet sapien urna pretium nisl ut volutpat sapien","questionCreatedAt":"3/6/2020","questionHelpfulYes":87,"questionHelpfulNo":23,"questionBody":"odio justo sollicitudin ut suscipit a feugiat et eros vestibulum ac est lacinia nisi venenatis","answers":79,"answer":null},
 {"questionAuthor":"fleroux1","questionTitle":"turpis donec posuere metus vitae ipsum aliquam non mauris morbi non","questionCreatedAt":"9/4/2020","questionHelpfulYes":24,"questionHelpfulNo":21,"questionBody":"eu massa donec dapibus duis at velit eu est congue elementum in hac habitasse platea dictumst","answers":31,"answer":null},
 {"questionAuthor":"nbogays2","questionTitle":"justo sollicitudin ut suscipit a feugiat et eros vestibulum ac est lacinia nisi venenatis tristique fusce congue diam","questionCreatedAt":"10/13/2020","questionHelpfulYes":40,"questionHelpfulNo":33,"questionBody":"nam dui proin leo odio porttitor id consequat in consequat ut nulla sed accumsan felis ut at dolor quis","answers":71,"answer":null},
