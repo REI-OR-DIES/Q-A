@@ -1,13 +1,10 @@
 const mongoose = require('mongoose');
-
-
 mongoose.connect('mongodb://localhost:27017/REI', {
   useNewUrlParser: true, useUnifiedTopology: true
 })
   .then(() => console.log('success connecting to REI mongoose db'))
   .catch(() => console.log('error connecting to REI mongoose db'))
 
-const db = mongoose.connection;
 
 const qaSchema = mongoose.Schema({
   questionAuthor: String,
@@ -26,9 +23,23 @@ const qaSchema = mongoose.Schema({
     answerHelpfulNo: Number
   },
 })
-//QUESTION - HOW TO SUPPORT MULTIPLE ANSWERS?
-
 
 const Qa = mongoose.model('Qa', qaSchema);
 
-module.exports.Qa = Qa;
+findAllQuestions = (callback) => {
+  Qa.find({}, (err, results) => {
+    if (err) {
+      console.log('error in db retrieving Qs');
+      callback(err, null)
+    } else {
+      console.log('success in db retrieving Qs');
+      callback(null, results);
+    }
+  })
+}
+
+
+
+module.exports = {
+  findAllQuestions
+};
