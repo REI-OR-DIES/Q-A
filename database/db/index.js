@@ -26,19 +26,15 @@ const qaSchema = mongoose.Schema({
 
 const Qa = mongoose.model('Qa', qaSchema);
 
-findAllQuestions = (callback) => {
+const findAllQuestions = (callback) => {
   Qa.find({}, (err, results) => {
     if (err) {
-      console.log('error in db retrieving Qs');
       callback(err, null)
     } else {
-      console.log('success in db retrieving Qs');
       callback(null, results);
     }
   })
 }
-
-
 
 module.exports = {
   findAllQuestions
