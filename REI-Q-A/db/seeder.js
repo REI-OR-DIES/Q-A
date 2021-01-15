@@ -1,8 +1,6 @@
 const { Qa } = require('./index.js');
 //const faker = require('faker');
 const { mockData } = require('./MOCK_DATA.js');
-console.log('hello')
-console.log('mockdatalength ', mockData.length);
 
 Qa.find()
   .then((result) => {
