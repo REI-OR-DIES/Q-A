@@ -54,11 +54,16 @@ const addNewQuestion = (question, callback) => {
   });
 };
 
+const incrementAnswersValue = (id) => {
+  Qa.findOneAndUpdate({ _id: id }, { $inc: { answers: 1 } }).exec();
+};
+
 const answerQuestion = (questionId, newAnswer, callback) => {
   Qa.findOneAndUpdate({ _id: questionId }, { $set: { answer: newAnswer } }, (err, results) => {
     if (err) {
       callback(err, null);
     } else {
+      incrementAnswersValue(questionId);
       callback(null, results);
     }
   });
