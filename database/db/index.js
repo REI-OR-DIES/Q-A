@@ -10,8 +10,6 @@ const qaSchema = mongoose.Schema({
   questionAuthor: String,
   questionTitle: String,
   questionCreatedAt: Date,
-  questionHelpfulYes: Number,
-  questionHelpfulNo: Number,
   questionBody: String,
   answers: Number,
   answer: {
@@ -40,8 +38,6 @@ const addNewQuestion = (question, callback) => {
     questionAuthor: question.questionAuthor,
     questionTitle: question.questionTitle,
     questionCreatedAt: question.questionCreatedAt,
-    questionHelpfulYes: question.questionHelpfulYes,
-    questionHelpfulNo: question.questionHelpfulNo,
     questionBody: question.questionBody,
     answers: question.answers,
     answer: question.answer,
@@ -54,11 +50,16 @@ const addNewQuestion = (question, callback) => {
   });
 };
 
+const incrementAnswersValue = (id) => {
+  Qa.findOneAndUpdate({ _id: id }, { $inc: { answers: 1 } }).exec();
+};
+
 const answerQuestion = (questionId, newAnswer, callback) => {
   Qa.findOneAndUpdate({ _id: questionId }, { $set: { answer: newAnswer } }, (err, results) => {
     if (err) {
       callback(err, null);
     } else {
+      incrementAnswersValue(questionId);
       callback(null, results);
     }
   });

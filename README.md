@@ -11,6 +11,9 @@ To install dependencies
 -To seed database:
   -npm run seed
 
+-To test:
+  -npm run test
+
 ## API Methods
 -GET /api/questions
   -returns array containing all question objects
