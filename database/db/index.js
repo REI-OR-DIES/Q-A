@@ -35,7 +35,38 @@ const findAllQuestions = (callback) => {
     }
   });
 };
+const addNewQuestion = (question, callback) => {
+  Qa.create({
+    questionAuthor: question.questionAuthor,
+    questionTitle: question.questionTitle,
+    questionCreatedAt: question.questionCreatedAt,
+    questionHelpfulYes: question.questionHelpfulYes,
+    questionHelpfulNo: question.questionHelpfulNo,
+    questionBody: question.questionBody,
+    answers: question.answers,
+    answer: question.answer,
+  }, (err, results) => {
+    if (err) {
+      callback(err, null);
+    } else {
+      callback(null, results);
+    }
+  });
+};
+
+const answerQuestion = (questionId, newAnswer, callback) => {
+  Qa.findOneAndUpdate({ _id: questionId }, { $set: { answer: newAnswer } }, (err, results) => {
+    if (err) {
+      callback(err, null);
+    } else {
+      callback(null, results);
+    }
+  });
+};
 
 module.exports = {
+  Qa,
   findAllQuestions,
+  addNewQuestion,
+  answerQuestion,
 };
