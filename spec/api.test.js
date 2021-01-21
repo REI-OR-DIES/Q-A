@@ -36,6 +36,29 @@ describe('POST /api/questions', () => {
         done();
       });
   })
+});
+
+describe('PUT /api/questions/:id', () => {
+  it('PUT an answer on an existing question', async(done) => {
+    const id = "6008719e6f61ce629bc07ae7"
+    const testUpdate = {
+      answer: {
+        answerTitle: "It is great",
+        answerAuthor: "James Harden",
+        answerCreatedAt: 1.20,
+        answerBody: "Oh yeah I love playing basketball in this",
+        answerHelpfulYes: 2,
+        answerHelpfulNo: 0,
+      }
+      }
+    request(app).put(`/api/questions/${id}`)
+      .send(testUpdate)
+      .expect(200)
+      .then((res) => {
+        expect(typeof res.body).toBe('object');
+        done();
+      });
+  })
 })
 
 

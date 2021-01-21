@@ -41,7 +41,6 @@ app.post('/questions', (req, res) => {
 });
 
 app.put('/questions/:id', (req, res) => {
-  console.log('req body ', req.body);
   const { id } = req.params;
   const answer = req.body.answer;
   answerQuestion(id, answer, (error, data) => {
