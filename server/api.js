@@ -1,14 +1,12 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 
 const { findAllQuestions, addNewQuestion, answerQuestion } = require('../database/db/index.js');
 
 const app = express.Router();
+app.use(cors());
 app.use(bodyParser.json());
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
-  next();
-});
 
 app.get('/questions', (req, res) => {
   findAllQuestions((err, results) => {
@@ -25,6 +23,8 @@ app.post('/questions', (req, res) => {
     questionAuthor: req.body.questionAuthor,
     questionTitle: req.body.questionTitle,
     questionCreatedAt: req.body.questionCreatedAt,
+    questionHelpfulYes: req.body.questionHelpfulYes,
+    questionHelpfulNo: req.body.questionHelpfulNo,
     questionBody: req.body.questionBody,
     answers: req.body.answers,
     answer: req.body.answer,
