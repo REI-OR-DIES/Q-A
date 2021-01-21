@@ -5,6 +5,10 @@ const { findAllQuestions, addNewQuestion, answerQuestion } = require('../databas
 
 const app = express.Router();
 app.use(bodyParser.json());
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  next();
+});
 
 app.get('/questions', (req, res) => {
   findAllQuestions((err, results) => {
