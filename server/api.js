@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
@@ -46,7 +48,7 @@ app.post('/questions', (req, res) => {
 
 app.put('/questions/:id', (req, res) => {
   const { id } = req.params;
-  const answer = req.body.answer;
+  const { answer } = req.body;
   answerQuestion(id, answer, (error, data) => {
     if (error) {
       res.status(500).send(error);

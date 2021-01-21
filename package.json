@@ -1,5 +1,5 @@
 {
-  "name": "GAR-FEC-Q-A",
+  "name": "gar-fec-q-a",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -30,7 +30,6 @@
     "express": "^4.17.1",
     "faker": "^5.1.0",
     "http-server": "^0.12.3",
-    "mongod": "^2.0.0",
     "mongodb": "^3.6.3",
     "mongoose": "^5.11.11",
     "nodemon": "^2.0.7",
