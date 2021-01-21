@@ -8,7 +8,10 @@ const Question = ({ questionList }) => (
       <p className="title">{questionList.questionTitle}</p>
       <p className="createdAt">{questionList.questionCreatedAt}</p>
       <p className="questionBody">{questionList.questionBody}</p>
-      <p className="numberOfAnswers">Number of Answers {questionList.answers}</p>
+      <p className="numberOfAnswers">
+        Number of Answers
+        {questionList.answers}
+      </p>
       <button type="submit"
       className="answerQuestion"
       >
