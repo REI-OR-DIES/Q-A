@@ -21,8 +21,6 @@ app.post('/questions', (req, res) => {
     questionAuthor: req.body.questionAuthor,
     questionTitle: req.body.questionTitle,
     questionCreatedAt: req.body.questionCreatedAt,
-    questionHelpfulYes: req.body.questionHelpfulYes,
-    questionHelpfulNo: req.body.questionHelpfulNo,
     questionBody: req.body.questionBody,
     answers: req.body.answers,
     answer: req.body.answer,
