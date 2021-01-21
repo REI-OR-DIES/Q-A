@@ -3,14 +3,8 @@ module.exports = {
     browser: true,
     es6: true,
     node: true,
-    'jest/globals': true,
+    jest: true,
   },
-  overrides: [
-    {
-      files: ['**/*.test.js'],
-      extends: ['plugin:jest/recommended', 'plugin:jest/style'],
-    },
-  ],
   extends: [
     'plugin:react/recommended',
     'airbnb',
@@ -28,6 +22,7 @@ module.exports = {
   },
   plugins: [
     'react',
+    'jest',
   ],
   rules: {
   },
