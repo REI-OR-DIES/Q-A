@@ -19,6 +19,24 @@ describe('GET /api/questions' , () => {
       });
   });
 })
+describe('POST /api/questions', () => {
+  it('POST a new question', async(done) => {
+    const testQuestion = {
+      questionAuthor: "Steph Curry",
+      questionTitle: "Basketball",
+      questionCreatedAt: 1.20,
+      questionBody: "Can I play basketball in this?",
+      answers: 0,
+      answer: {}
+    }
+    request(app).post('/api/questions', testQuestion)
+      .expect(200)
+      .then((res) => {
+        expect(typeof res.body).toBe('object');
+        done();
+      });
+  })
+})
 
 
 // const requestId = (id) => request.get(`/api/questions/${id}`);
