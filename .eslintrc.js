@@ -5,6 +5,12 @@ module.exports = {
     node: true,
     'jest/globals': true,
   },
+  overrides: [
+    {
+      files: ['**/*.test.js'],
+      extends: ['plugin:jest/recommended', 'plugin:jest/style'],
+    },
+  ],
   extends: [
     'plugin:react/recommended',
     'airbnb',
