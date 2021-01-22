@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest --detectOpenHandles",
+    "test": "jest --forceExit",
     "seed": "node database/db/seeder.js",
     "start": "nodemon server/index.js",
     "build": "webpack",
