@@ -33,7 +33,7 @@ describe('POST /api/questions', () => {
     request(app).post('/api/questions', testQuestion)
       .expect(200)
       .then((res) => {
-        expect(typeof res.body).resolves.toBe('object');
+        expect(typeof res.body).toBe('object');
         done();
       });
   });
@@ -56,7 +56,7 @@ describe('PUT /api/questions/:id', () => {
       .send(testUpdate)
       .expect(200)
       .then((res) => {
-        expect(typeof res.body).resolves.toBe('object');
+        expect(typeof res.body).toBe('object');
         done();
       });
   });
