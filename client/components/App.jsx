@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import Question from './Question';
+import QuestionList from './QuestionList';
 
 const App = () => {
   const [questionList, setQuestionList] = useState([]);
@@ -28,7 +28,7 @@ const App = () => {
       >
         Ask a question
       </button>
-      <Question
+      <QuestionList
         questionList={questionList}
       />
     </div>
