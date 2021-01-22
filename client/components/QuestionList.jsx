@@ -7,7 +7,7 @@ const QuestionList = ({ questionList }) => (
     {
       questionList.map(question => {
         return (
-          <Question questionList={questionList}/>
+          <Question key={question._id} questionList={questionList}/>
         )
       })
     }
@@ -15,7 +15,7 @@ const QuestionList = ({ questionList }) => (
 );
 
 QuestionList.propTypes = {
-  questionList: PropTypes.arrayOf.isRequired,
+  questionList: PropTypes.any.isRequired,
 };
 
 export default QuestionList;

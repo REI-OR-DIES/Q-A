@@ -23,7 +23,7 @@ const Question = ({ questionList }) => (
 );
 
 Question.propTypes = {
-  questionList: PropTypes.arrayOf.isRequired,
+  questionList: PropTypes.any.isRequired,
 };
 
 export default Question;
