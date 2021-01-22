@@ -8,8 +8,11 @@ const App = () => {
   const getQuestionList = () => {
     axios.get('http://localhost:3007/api/questions')
       .then(({ data }) => {
-        const firstQ = data[0];
-        setQuestionList(firstQ);
+        const questions = [];
+        for (let i = 0; i < 25; i++) {
+          questions.push(data[i]);
+        }
+        setQuestionList(questions);
       });
   };
   useEffect(() => {
