@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest --forceExit",
+    "api:test": "jest spec/backend --forceExit",
+    "client:test": "jest spec/client --forceExit",
     "seed": "node database/db/seeder.js",
     "start": "nodemon server/index.js",
     "build": "webpack",

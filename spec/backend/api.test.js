@@ -3,7 +3,7 @@
 const regeneratorRuntime = require('regenerator-runtime');
 const request = require('supertest');
 const express = require('express');
-const api = require('../server/api');
+const api = require('../../server/api');
 
 const app = express();
 jest.useFakeTimers();

@@ -3,7 +3,7 @@
 
 const mongoose = require('mongoose');
 const regeneratorRuntime = require('regenerator-runtime');
-const db = require('../database/db/index.js');
+const db = require('../../database/db/index.js');
 
 const mongoURI = 'mongodb://localhost:27017/REI';
 jest.useFakeTimers();
