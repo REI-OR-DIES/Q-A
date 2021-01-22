@@ -2,7 +2,7 @@
   "name": "gar-fec-q-a",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "index.jsx",
   "scripts": {
     "test": "jest --forceExit",
     "seed": "node database/db/seeder.js",
@@ -39,8 +39,7 @@
     "regenerator": "^0.14.7",
     "regenerator-runtime": "^0.13.7",
     "webpack": "^5.14.0",
-    "webpack-cli": "^4.3.1",
-    "webpack-dev-server": "^3.11.2"
+    "webpack-cli": "^4.3.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.12.10",
