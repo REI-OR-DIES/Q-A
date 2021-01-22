@@ -30,11 +30,11 @@ describe('Testing the API and database', () => {
     answer: {},
   })
     .then((results) => {
-      expect(results).not.toBeNull();
+      expect(results).resolves.not.toBeNull();
     }));
   test('it should find question by questionAuthor', () => db.Qa.findOne({ questionAuthor: 'Bob Smith' })
     .then((results) => {
-      expect(results).not.toBeNull();
+      expect(results).resolves.not.toBeNull();
     }));
   test('it should find the correct question by questionAuthor', () => db.Qa.findOne({ questionAuthor: 'Bob Smith' })
     .then((results) => {
@@ -42,15 +42,15 @@ describe('Testing the API and database', () => {
     }));
   test('it should have a questionBody', () => db.Qa.findOne({ questionAuthor: 'Bob Smith' })
     .then((results) => {
-      expect(results).toHaveProperty('questionBody', 'I was wondering how the jacket feels?');
+      expect(results).resolves.toHaveProperty('questionBody', 'I was wondering how the jacket feels?');
     }));
   test('it should have a questionCreatedAt', () => db.Qa.findOne({ questionAuthor: 'Bob Smith' })
     .then((results) => {
-      expect(results.questionCreatedAt).not.toBeNull();
+      expect(results.questionCreatedAt).resolves.not.toBeNull();
     }));
   test('it should have an answers property', () => db.Qa.findOne({ questionAuthor: 'Bob Smith' })
     .then((results) => {
-      expect(results.answers).not.toBeNull();
+      expect(results.answers).resolves.not.toBeNull();
     }));
 });
 
