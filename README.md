@@ -11,6 +11,12 @@ To install dependencies
 -To seed database:
   -npm run seed
 
+-To run webpack
+  -npm run watch
+
+-To run react server
+  -npm run serve
+
 -To test:
   -npm run test
 

@@ -1,9 +1,13 @@
+/* eslint-disable no-unused-vars */
+
 const express = require('express');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 
 const { findAllQuestions, addNewQuestion, answerQuestion } = require('../database/db/index.js');
 
 const app = express.Router();
+app.use(cors());
 app.use(bodyParser.json());
 
 app.get('/questions', (req, res) => {
@@ -43,9 +47,8 @@ app.post('/questions', (req, res) => {
 });
 
 app.put('/questions/:id', (req, res) => {
-  console.log('req body ', req.body);
   const { id } = req.params;
-  const answer = req.body.answer;
+  const { answer } = req.body;
   answerQuestion(id, answer, (error, data) => {
     if (error) {
       res.status(500).send(error);
