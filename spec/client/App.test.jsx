@@ -1,3 +1,7 @@
+/**
+ * @jest-environment jsdom
+ */
+
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
@@ -9,7 +13,6 @@ describe('App', () => {
     render(<App />);
 
     expect(screen.getByText('Questions and Answers')).toBeInTheDocument();
-    expect(screen.getByText('Number of answers:')).toBeInTheDocument();
+    expect(screen.getByText('Number of Answers')).toBeInTheDocument();
   });
-  //TODO implement user-behavior/fireevent tests
 });

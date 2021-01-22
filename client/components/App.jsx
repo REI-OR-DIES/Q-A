@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import ReactDOM from 'react-dom';
 import axios from 'axios';
 import Question from './Question';
 
@@ -10,7 +9,6 @@ const App = () => {
     axios.get('http://localhost:3007/api/questions')
       .then(({ data }) => {
         const firstQ = data[0];
-        console.log('firstQ is :', firstQ);
         setQuestionList(firstQ);
       });
   };

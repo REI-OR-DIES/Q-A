@@ -1,11 +1,12 @@
 /* eslint-disable no-console */
+/* eslint-disable no-unused-vars */
 
 const mongoose = require('mongoose');
-const db = require('../database/db/index.js');
-const regeneratorRuntime = require("regenerator-runtime");
+const regeneratorRuntime = require('regenerator-runtime');
+const db = require('../../database/db/index.js');
 
 const mongoURI = 'mongodb://localhost:27017/REI';
-jest.useFakeTimers()
+jest.useFakeTimers();
 
 beforeAll(async () => {
   await mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true });

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const Question = ({ questionList }) => (
   <div className="question">
@@ -12,13 +13,18 @@ const Question = ({ questionList }) => (
         Number of Answers
         {questionList.answers}
       </p>
-      <button type="submit"
-      className="answerQuestion"
+      <button
+        type="submit"
+        className="answerQuestion"
       >
         Answer the question
       </button>
     </div>
   </div>
 );
+
+Question.propTypes = {
+  questionList: PropTypes.arrayOf.isRequired,
+};
 
 export default Question;
