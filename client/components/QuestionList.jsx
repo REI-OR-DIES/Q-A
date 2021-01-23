@@ -3,12 +3,16 @@ import PropTypes from 'prop-types';
 import Question from './Question';
 import Modal from 'react-modal';
 
-const QuestionList = ({ questionList }) => {
+const QuestionList = ({ questionList, answerQuestion }) => {
 
 const [isAnsweringQuestion, setIsAnsweringQuestion] = useState(false);
 const [answerTitle, setAnswerTitle] = useState(null);
 const [answerBody, setAnswerBody] = useState(null);
 const [answerUserName, setAnswerUserName] = useState(null);
+
+  const onSubmit = (answer) => {() =>
+    answerQuestion(answer);
+  }
 
   return (
     <div className="questionList">
@@ -36,6 +40,37 @@ const [answerUserName, setAnswerUserName] = useState(null);
           <p className="title">{question.questionTitle}</p>
           <p className="createdAt">{question.questionCreatedAt}</p>
           <p className="questionBody">{question.questionBody}</p>
+          <form
+              onSubmit={(event) => {
+                event.preventDefault();
+                onSubmit({ questionAuthor, questionTitle, questionBody })
+              }}
+            >
+              <label>
+                  Answer Title:
+                  <input
+                  type="text" name="questionTitle"
+                  onChange={(event) => setAnswerTitle(event.target.value)}
+                  />
+              </label>
+              <label>
+                  Answer:
+                  <input type="text" name="questionBody"
+                  onChange={(event) => setAnswerBody(event.target.value)}
+                  />
+              </label>
+              <label>
+                  Nickname:
+                  <input
+                  type="text"
+                  name="username"
+                  onChange={(event) => setAnswerUserName(event.target.value)}
+                  />
+              </label>
+              <button onClick={() => onSubmit({ _id, answerTitle, answerBody, answerUserName })}>
+                  Answer question
+              </button>
+            </form>
             <button onClick={() => setIsAnsweringQuestion(false)}>
               Close
             </button>

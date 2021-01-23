@@ -34,10 +34,15 @@ const App = () => {
   };
 
   const addQuestion = (question) => {
+    console.log('we are posting')
     axios.post('/api/questions', question)
     .then(getQuestionList)
   };
-
+  const answerQuestion = (_id, answer) => {
+    console.log('im in answerQuestion')
+    axios.put(`/api/questions${_id}`, answer)
+    .then(getQuestionList());
+  }
 
 
   return (
@@ -87,6 +92,7 @@ const App = () => {
           </Modal>
       <QuestionList
         questionList={questionList}
+        answerQuestion={answerQuestion}
       />
       <button
         type="submit"
