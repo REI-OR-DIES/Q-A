@@ -34,7 +34,8 @@ const App = () => {
   };
 
   const addQuestion = (question) => {
-    axios.post('/api/questions', question).then(getQuestionList)
+    axios.post('/api/questions', question)
+    .then(getQuestionList)
   };
 
 

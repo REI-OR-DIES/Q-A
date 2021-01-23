@@ -6,6 +6,9 @@ import Modal from 'react-modal';
 const QuestionList = ({ questionList }) => {
 
 const [isAnsweringQuestion, setIsAnsweringQuestion] = useState(false);
+const [answerTitle, setAnswerTitle] = useState(null);
+const [answerBody, setAnswerBody] = useState(null);
+const [answerUserName, setAnswerUserName] = useState(null);
 
   return (
     <div className="questionList">
@@ -29,8 +32,10 @@ const [isAnsweringQuestion, setIsAnsweringQuestion] = useState(false);
             Answer the question
           </button>
           <Modal isOpen={isAnsweringQuestion} onRequestClose={() => setIsAnsweringQuestion(false)}>
-            <h3>Answering the question</h3>
-            <p>What is your answer?</p>
+          <p className="author">{question.questionAuthor}</p>
+          <p className="title">{question.questionTitle}</p>
+          <p className="createdAt">{question.questionCreatedAt}</p>
+          <p className="questionBody">{question.questionBody}</p>
             <button onClick={() => setIsAnsweringQuestion(false)}>
               Close
             </button>
