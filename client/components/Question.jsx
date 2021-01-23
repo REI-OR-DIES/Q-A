@@ -3,14 +3,14 @@ import PropTypes from 'prop-types';
 
 const Question = ({ questionList }) => (
   <div className="question">
-    <div>
-      <p className="author">{questionList.questionAuthor}</p>
-      <p className="title">{questionList.questionTitle}</p>
-      <p className="createdAt">{questionList.questionCreatedAt}</p>
-      <p className="questionBody">{questionList.questionBody}</p>
+    <div key={question._id}>
+      <p className="author">{question.questionAuthor}</p>
+      <p className="title">{question.questionTitle}</p>
+      <p className="createdAt">{question.questionCreatedAt}</p>
+      <p className="questionBody">{question.questionBody}</p>
       <p className="numberOfAnswers">
         Number of Answers
-        {questionList.answers}
+        {question.answers}
       </p>
       <button
         type="submit"

@@ -19,6 +19,16 @@ const App = () => {
     getQuestionList();
   }, []);
 
+  const handleSubmit = (newQuestion) => {
+    addQuestion(newQuestion)
+  };
+
+  const addQuestion = (question) => {
+    axios.post('/api/questions', question).then(getQuestionList)
+  };
+
+
+
   return (
     <div>
       <h1>Questions and Answers</h1>
@@ -31,6 +41,12 @@ const App = () => {
       <QuestionList
         questionList={questionList}
       />
+       <button
+            type="submit"
+            className="showMore"
+          >
+            Show more
+          </button>
     </div>
   );
 };
