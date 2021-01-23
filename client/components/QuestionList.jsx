@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Question from './Question';
 import Modal from 'react-modal';
@@ -6,6 +6,7 @@ import Modal from 'react-modal';
 const QuestionList = ({ questionList }) => {
 
 const [isAnsweringQuestion, setIsAnsweringQuestion] = useState(false);
+
   return (
     <div className="questionList">
     {
@@ -27,7 +28,7 @@ const [isAnsweringQuestion, setIsAnsweringQuestion] = useState(false);
           >
             Answer the question
           </button>
-          <Modal isOpen={isAnsweringQuestion}>
+          <Modal isOpen={isAnsweringQuestion} onRequestClose={() => setIsAnsweringQuestion(false)}>
             <h3>Answering the question</h3>
             <p>What is your answer?</p>
             <button onClick={() => setIsAnsweringQuestion(false)}>
