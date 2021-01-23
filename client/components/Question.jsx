@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Question = ({ questionList }) => (
+const Question = ({ questionList }) => {
   <div className="question">
     <div key={question._id}>
       <p className="author">{question.questionAuthor}</p>
@@ -20,7 +20,7 @@ const Question = ({ questionList }) => (
       </button>
     </div>
   </div>
-);
+};
 
 Question.propTypes = {
   questionList: PropTypes.any.isRequired,
