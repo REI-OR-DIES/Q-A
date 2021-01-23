@@ -29,9 +29,8 @@ const App = () => {
     getQuestionList();
   }, []);
 
-  const onSubmit = (event) => {
-    event.preventDefault(event);
-
+  const handleSubmit = (newQuestion) => {
+    addQuestion(newQuestion)
   };
 
   const addQuestion = (question) => {
@@ -52,18 +51,32 @@ const App = () => {
       </button>
       <Modal isOpen={isAskingQuestion} onRequestClose={() => setIsAskingQuestion(false)}>
             <h2>Ask a Question</h2>
-            <form>
+            <form
+              handleSubmit={(event) => {
+                event.preventDefault();
+                handleSubmit({ questionAuthor, questionTitle, questionBody })
+              }}
+            >
               <label>
                   Question Title:
-                  <input type="text" name="questionTitle" />
+                  <input
+                  type="text" name="questionTitle"
+                  onChange={(event) => setQuestionTitle(event.target.value)}
+                  />
               </label>
               <label>
                   Question:
-                  <input type="text" name="questionBody" />
+                  <input type="text" name="questionBody"
+                  onChange={(event) => setQuestionBody(event.target.value)}
+                  />
               </label>
               <label>
                   Nickname:
-                  <input type="text" name="username" />
+                  <input
+                  type="text"
+                  name="username"
+                  onChange={(event) => setQuestionAuthor(event.target.value)}
+                  />
               </label>
               <button onClick={() => onSubmit()}>
                   Post question
