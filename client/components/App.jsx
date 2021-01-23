@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import QuestionList from './QuestionList';
+import Modal from 'react-modal';
 
 const App = () => {
   const [questionList, setQuestionList] = useState([]);
+  const [isAskingQuestion, setIsAskingQuestion] = useState(false);
 
   const getQuestionList = () => {
     axios.get('http://localhost:3007/api/questions')
@@ -35,9 +37,15 @@ const App = () => {
       <button
         type="submit"
         className="askQuestion"
+        onClick={() => setIsAskingQuestion(true)}
       >
         Ask a question
       </button>
+      <Modal isOpen={isAskingQuestion}>
+            <h2>Modal is working</h2>
+            <p>Modal body will go here!</p>
+            <button onClick={() => setIsAskingQuestion(false)}>Close</button>
+          </Modal>
       <QuestionList
         questionList={questionList}
       />
