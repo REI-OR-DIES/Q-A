@@ -6,13 +6,16 @@ import Modal from 'react-modal';
 const QuestionList = ({ questionList, answerQuestion }) => {
 
 const [isAnsweringQuestion, setIsAnsweringQuestion] = useState(false);
+const [currentQuestion, setCurrentQuestion] = useState(null);
 const [answerTitle, setAnswerTitle] = useState(null);
 const [answerBody, setAnswerBody] = useState(null);
 const [answerUserName, setAnswerUserName] = useState(null);
 
-  const onSubmit = (answer) => {() =>
-    answerQuestion(answer);
-  }
+  // const onSubmit = (key, answer) => {() =>
+  //   console.log('in question list onSubmit')
+  //   answerQuestion(key, answer);
+  // }
+
 
   return (
     <div className="questionList">
@@ -42,8 +45,9 @@ const [answerUserName, setAnswerUserName] = useState(null);
           <p className="questionBody">{question.questionBody}</p>
           <form
               onSubmit={(event) => {
-                event.preventDefault();
-                onSubmit({ questionAuthor, questionTitle, questionBody })
+                 event.preventDefault();
+                // console.log('qustion _id', question._id)
+                // answerQuestion(question._id, { answerTitle, answerBody, answerUserName})
               }}
             >
               <label>
@@ -67,7 +71,13 @@ const [answerUserName, setAnswerUserName] = useState(null);
                   onChange={(event) => setAnswerUserName(event.target.value)}
                   />
               </label>
-              <button onClick={() => onSubmit({ _id, answerTitle, answerBody, answerUserName })}>
+              <button onClick={() => {
+                answerQuestion(question._id, {
+                  answerTitle,
+                  answerBody,
+                  answerUserName
+                })
+              }}>
                   Answer question
               </button>
             </form>

@@ -41,7 +41,7 @@ const App = () => {
   };
   const answerQuestion = (_id, answer) => {
     console.log('im in answerQuestion')
-    axios.put(`/api/questions${_id}`, answer)
+    axios.put(`/api/questions/${_id}`, answer)
     .then(getQuestionList());
   }
 

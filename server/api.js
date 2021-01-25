@@ -48,7 +48,15 @@ app.post('/questions', (req, res) => {
 
 app.put('/questions/:id', (req, res) => {
   const { id } = req.params;
-  const { answer } = req.body;
+  const answer = {
+    answerTitle: req.body.answerTitle,
+    answerBody: req.body.answerBody,
+    answerAuthor: req.body.answerUserName,
+    answerHelpfulYes: 0,
+    answerHelpfulNo: 0
+  };
+  console.log('answer ', answer);
+  console.log('req.body ', req.body)
   answerQuestion(id, answer, (error, data) => {
     if (error) {
       res.status(500).send(error);
