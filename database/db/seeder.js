@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 const { Qa } = require('./index.js');
 const { mockData } = require('./MOCK_DATA.js');
 

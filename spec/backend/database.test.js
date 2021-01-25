@@ -53,4 +53,3 @@ describe('Testing the API and database', () => {
       expect(results.answers).not.toBeNull();
     }));
 });
-

@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable no-unused-vars */
 
 const express = require('express');
@@ -53,10 +54,10 @@ app.put('/questions/:id', (req, res) => {
     answerBody: req.body.answerBody,
     answerAuthor: req.body.answerUserName,
     answerHelpfulYes: 0,
-    answerHelpfulNo: 0
+    answerHelpfulNo: 0,
   };
   console.log('answer ', answer);
-  console.log('req.body ', req.body)
+  console.log('req.body ', req.body);
   answerQuestion(id, answer, (error, data) => {
     if (error) {
       res.status(500).send(error);

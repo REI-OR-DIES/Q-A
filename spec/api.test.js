@@ -4,4 +4,4 @@ const api = require('../server/api');
 
 const app = express();
 
-app.use('/api', api)
+app.use('/api', api);

@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import QuestionList from './QuestionList';
-import Modal from 'react-modal';
 import PropTypes from 'prop-types';
-
+import Modal from 'react-modal';
+// eslint-disable-next-line import/no-named-as-default-member
+import QuestionList from './QuestionList';
 
 Modal.setAppElement('#app');
 
@@ -13,13 +13,13 @@ const App = () => {
   const [questionAuthor, setQuestionAuthor] = useState('');
   const [questionTitle, setQuestionTitle] = useState('');
   const [questionBody, setQuestionBody] = useState('');
-  const [lastQuestion, setLastQuestion] = useState(null)
+  const [lastQuestion, setLastQuestion] = useState(null);
 
   const getQuestionList = () => {
     axios.get('http://localhost:3007/api/questions')
       .then(({ data }) => {
         const questions = [];
-        for (let i = 0; i < 5; i++) {
+        for (let i = 0; i < 5; i + 1) {
           questions.push(data[i]);
           setLastQuestion(i);
         }
@@ -30,21 +30,17 @@ const App = () => {
     getQuestionList();
   }, []);
 
-  const processPost = (newQuestion) => {
-    addQuestion(newQuestion)
-  };
-
   const addQuestion = (question) => {
-    console.log('we are posting')
     axios.post('/api/questions', question)
-    .then(getQuestionList)
+      .then(getQuestionList);
+  };
+  const processPost = (newQuestion) => {
+    addQuestion(newQuestion);
   };
   const answerQuestion = (_id, answer) => {
-    console.log('im in answerQuestion')
     axios.put(`/api/questions/${_id}`, answer)
-    .then(getQuestionList());
-  }
-
+      .then(getQuestionList());
+  };
 
   return (
     <div>
@@ -57,40 +53,55 @@ const App = () => {
         Ask a question
       </button>
       <Modal isOpen={isAskingQuestion} onRequestClose={() => setIsAskingQuestion(false)}>
-            <h2>Ask a Question</h2>
-            <form
-              onSubmit={(event) => {
-                event.preventDefault();
-                processPost({ questionAuthor, questionTitle, questionBody })
-              }}
-            >
-              <label>
-                  Question Title:
-                  <input
-                  type="text" name="questionTitle"
-                  onChange={(event) => setQuestionTitle(event.target.value)}
-                  />
-              </label>
-              <label>
-                  Question:
-                  <input type="text" name="questionBody"
-                  onChange={(event) => setQuestionBody(event.target.value)}
-                  />
-              </label>
-              <label>
-                  Nickname:
-                  <input
-                  type="text"
-                  name="username"
-                  onChange={(event) => setQuestionAuthor(event.target.value)}
-                  />
-              </label>
-              <button onClick={() => processPost()}>
-                  Post question
-              </button>
-            </form>
-            <button onClick={() => setIsAskingQuestion(false)}>Close</button>
-          </Modal>
+        <h2>Ask a Question</h2>
+        <form
+          onSubmit={(event) => {
+            event.preventDefault();
+            processPost({ questionAuthor, questionTitle, questionBody });
+          }}
+        >
+          {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+          <label>
+            Question Title:
+            <input
+              type="text"
+              name="questionTitle"
+              onChange={(event) => setQuestionTitle(event.target.value)}
+            />
+          </label>
+          {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+          <label>
+            Question:
+            <input
+              type="text"
+              name="questionBody"
+              onChange={(event) => setQuestionBody(event.target.value)}
+            />
+          </label>
+          {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+          <label>
+            Nickname:
+            <input
+              type="text"
+              name="username"
+              onChange={(event) => setQuestionAuthor(event.target.value)}
+            />
+            {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+          </label>
+          <button
+            type="submit"
+            onClick={() => processPost()}
+          >
+            Post question
+          </button>
+        </form>
+        <button
+          type="submit"
+          onClick={() => setIsAskingQuestion(false)}
+        >
+          Close
+        </button>
+      </Modal>
       <QuestionList
         questionList={questionList}
         answerQuestion={answerQuestion}
@@ -99,15 +110,14 @@ const App = () => {
         type="submit"
         className="showMore"
         onClick={() => axios.get('http://localhost:3007/api/questions')
-        .then(({ data }) => {
-          const newQuestions = [];
-          for (let i = lastQuestion + 1; i < lastQuestion + 6; i++) {
-            newQuestions.push(data[i]);
-            setLastQuestion(i);
-          }
-          setQuestionList(newQuestions)
-        })
-      }
+          .then(({ data }) => {
+            const newQuestions = [];
+            for (let i = lastQuestion + 1; i < lastQuestion + 6; i + 1) {
+              newQuestions.push(data[i]);
+              setLastQuestion(i);
+            }
+            setQuestionList(newQuestions);
+          })}
       >
         Show more
       </button>
@@ -115,8 +125,9 @@ const App = () => {
   );
 };
 
-// App.propTypes = {
-//   questionList: PropTypes.arrayOf.isRequired,
-// };
+App.propTypes = {
+  // eslint-disable-next-line react/no-unused-prop-types
+  questionList: PropTypes.arrayOf.isRequired,
+};
 
 export default App;
