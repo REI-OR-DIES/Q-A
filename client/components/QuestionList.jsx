@@ -6,7 +6,7 @@ import Modal from 'react-modal';
 const QuestionList = ({ questionList, answerQuestion }) => {
 
 const [isAnsweringQuestion, setIsAnsweringQuestion] = useState(false);
-const [currentQuestion, setCurrentQuestion] = useState(null);
+const [currentQuestion, setCurrentQuestion] = useState({});
 const [answerTitle, setAnswerTitle] = useState(null);
 const [answerBody, setAnswerBody] = useState(null);
 const [answerUserName, setAnswerUserName] = useState(null);
@@ -34,15 +34,19 @@ const [answerUserName, setAnswerUserName] = useState(null);
           <button
             type="submit"
             className="answerQuestion"
-            onClick={() => setIsAnsweringQuestion(true)}
+            onClick={() => {
+              setCurrentQuestion(question)
+              setIsAnsweringQuestion(question)
+            }
+              }
           >
             Answer the question
           </button>
           <Modal isOpen={isAnsweringQuestion} onRequestClose={() => setIsAnsweringQuestion(false)}>
-          <p className="author">{question.questionAuthor}</p>
-          <p className="title">{question.questionTitle}</p>
-          <p className="createdAt">{question.questionCreatedAt}</p>
-          <p className="questionBody">{question.questionBody}</p>
+          <p className="author">{currentQuestion.questionAuthor}</p>
+          <p className="title">{currentQuestion.questionTitle}</p>
+          <p className="createdAt">{currentQuestion.questionCreatedAt}</p>
+          <p className="questionBody">{currentQuestion.questionBody}</p>
           <form
               onSubmit={(event) => {
                  event.preventDefault();
@@ -72,7 +76,7 @@ const [answerUserName, setAnswerUserName] = useState(null);
                   />
               </label>
               <button onClick={() => {
-                answerQuestion(question._id, {
+                answerQuestion(currentQuestion._id, {
                   answerTitle,
                   answerBody,
                   answerUserName

@@ -55,8 +55,6 @@ const incrementAnswersValue = (id) => {
 };
 
 const answerQuestion = (questionId, newAnswer, callback) => {
-  console.log('questionid ', questionId);
-  console.log('newAnswer' , newAnswer);
   Qa.findOneAndUpdate({ _id: questionId }, { $set: { answer: newAnswer } }, (err, results) => {
     if (err) {
       callback(err, null);
