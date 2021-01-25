@@ -84,8 +84,8 @@ const [answerUserName, setAnswerUserName] = useState(null);
 
 };
 
-QuestionList.propTypes = {
-  questionList: PropTypes.arrayOf.isRequired,
-};
+// QuestionList.propTypes = {
+//   questionList: PropTypes.arrayOf.isRequired,
+// };
 
 export default QuestionList;

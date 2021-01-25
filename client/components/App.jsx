@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import QuestionList from './QuestionList';
 import Modal from 'react-modal';
+import PropTypes from 'prop-types';
 
 
 Modal.setAppElement('#app');
@@ -29,7 +30,7 @@ const App = () => {
     getQuestionList();
   }, []);
 
-  const handleSubmit = (newQuestion) => {
+  const processPost = (newQuestion) => {
     addQuestion(newQuestion)
   };
 
@@ -58,9 +59,9 @@ const App = () => {
       <Modal isOpen={isAskingQuestion} onRequestClose={() => setIsAskingQuestion(false)}>
             <h2>Ask a Question</h2>
             <form
-              handleSubmit={(event) => {
+              onSubmit={(event) => {
                 event.preventDefault();
-                handleSubmit({ questionAuthor, questionTitle, questionBody })
+                processPost({ questionAuthor, questionTitle, questionBody })
               }}
             >
               <label>
@@ -84,7 +85,7 @@ const App = () => {
                   onChange={(event) => setQuestionAuthor(event.target.value)}
                   />
               </label>
-              <button onClick={() => onSubmit()}>
+              <button onClick={() => processPost()}>
                   Post question
               </button>
             </form>
@@ -114,5 +115,8 @@ const App = () => {
   );
 };
 
+// App.propTypes = {
+//   questionList: PropTypes.arrayOf.isRequired,
+// };
 
 export default App;
