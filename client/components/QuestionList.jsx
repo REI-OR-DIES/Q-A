@@ -28,14 +28,23 @@ const QuestionList = ({ questionList, answerQuestion }) => {
             </p>
             <div>
               {
-                    // eslint-disable-next-line no-prototype-builtins
                     question.answer !== undefined ? (
-                      <div>
-                        <span>
+                      <div className="answer">
+                        <div className="answerAuthor">
                           {question.answer.answerAuthor}
+                        </div>
+                        <div className="answerTitle">
                           {question.answer.answerTitle}
+                        </div>
+                        <div className="answerBody">
                           {question.answer.answerBody}
-                        </span>
+                        </div>
+                        <div className="answerHelpfulYes">
+                          {question.answer.answerHelpfulYes}
+                        </div>
+                        <div className="answerHelpfulNo">
+                          {question.answer.answerHelpfulNo}
+                        </div>
                       </div>
                     )
                       : <div />
