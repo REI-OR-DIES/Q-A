@@ -12,28 +12,6 @@ const QuestionList = ({ questionList, answerQuestion }) => {
   const [answerBody, setAnswerBody] = useState(null);
   const [answerUserName, setAnswerUserName] = useState(null);
 
-  const isEmpty = (obj) => {
-    if (obj === null) {
-      return true;
-    }
-    if (obj === undefined) {
-      return true;
-    }
-
-    if (obj.length === 0) {
-      return true;
-    }
-
-    if (obj.length > 0) {
-      return false;
-    }
-    if (Object.keys(obj).length > 0) {
-      return false;
-    }
-
-    return true;
-  };
-  console.log('questionList ', questionList);
   return (
     <div>
       <div className="questionList">
