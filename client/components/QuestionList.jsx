@@ -30,21 +30,28 @@ const QuestionList = ({ questionList, answerQuestion }) => {
               {
                     question.answer !== undefined ? (
                       <div className="answer">
+                        Answer Author:
                         <div className="answerAuthor">
                           {question.answer.answerAuthor}
                         </div>
+                        Title:
                         <div className="answerTitle">
                           {question.answer.answerTitle}
                         </div>
+                        Answer:
                         <div className="answerBody">
                           {question.answer.answerBody}
                         </div>
-                        <div className="answerHelpfulYes">
-                          {question.answer.answerHelpfulYes}
-                        </div>
-                        <div className="answerHelpfulNo">
-                          {question.answer.answerHelpfulNo}
-                        </div>
+                        <p>
+                          Helpful?
+                          <div className="answerHelpfulYes">
+                            {question.answer.answerHelpfulYes}
+                          </div>
+                          <div className="answerHelpfulNo">
+                            {question.answer.answerHelpfulNo}
+                          </div>
+                        </p>
+
                       </div>
                     )
                       : <div />
