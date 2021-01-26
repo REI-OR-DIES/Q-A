@@ -110,10 +110,11 @@ const App = () => {
       <button
         type="submit"
         className="showMore"
-        onClick={() => axios.get('http://localhost:3003/api/questions')
+        onClick={(event) => axios.get('http://localhost:3003/api/questions')
           .then(({ data }) => {
+            event.preventDefault();
             const newQuestions = [];
-            for (let i = lastQuestion + 1; i < lastQuestion + 6; i + 1) {
+            for (let i = lastQuestion + 1; i < lastQuestion + 6; i += 1) {
               newQuestions.push(data[i]);
               setLastQuestion(i);
             }

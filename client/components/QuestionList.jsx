@@ -4,6 +4,7 @@
 /* eslint-disable react/prop-types */
 import React, { useState } from 'react'; import PropTypes from 'prop-types';
 import Modal from 'react-modal';
+import Moment from 'react-moment';
 
 const QuestionList = ({ questionList, answerQuestion }) => {
   const [isAnsweringQuestion, setIsAnsweringQuestion] = useState(false);
@@ -30,7 +31,7 @@ const QuestionList = ({ questionList, answerQuestion }) => {
 
             </p>
             <p className="author">{question.questionAuthor}</p>
-            <p className="createdAt">{question.questionCreatedAt}</p>
+            <p className="createdAt"><Moment fromNow>{question.questionCreatedAt}</Moment></p>
             <p className="title">{question.questionTitle}</p>
             <p className="questionBody">{question.questionBody}</p>
             <div>
@@ -93,7 +94,7 @@ const QuestionList = ({ questionList, answerQuestion }) => {
               <Modal isOpen={isAnsweringQuestion} onRequestClose={() => setIsAnsweringQuestion(false)}>
                 <p className="author">{currentQuestion.questionAuthor}</p>
                 <p className="title">{currentQuestion.questionTitle}</p>
-                <p className="createdAt">{currentQuestion.questionCreatedAt}</p>
+                <p className="createdAt"><Moment fromNow>{question.questionCreatedAt}</Moment></p>
                 <p className="questionBody">{currentQuestion.questionBody}</p>
                 <form
                   onSubmit={(event) => {
