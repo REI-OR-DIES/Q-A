@@ -32,7 +32,7 @@ const App = () => {
 
   const addQuestion = (question) => {
     axios.post('/api/questions', question)
-      .then(getQuestionList);
+      .then(getQuestionList());
   };
   const processPost = (newQuestion) => {
     addQuestion(newQuestion);

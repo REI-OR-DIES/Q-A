@@ -13,7 +13,6 @@ const QuestionList = ({ questionList, answerQuestion }) => {
 
   return (
     <div>
-      this is a test
       <div className="questionList">
         {
         questionList.slice(0, 5).map((question) => (
