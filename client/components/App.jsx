@@ -16,7 +16,7 @@ const App = () => {
   const [lastQuestion, setLastQuestion] = useState(null);
 
   const getQuestionList = () => {
-    axios.get('http://localhost:3007/api/questions')
+    axios.get('http://localhost:3003/api/questions')
       .then(({ data }) => {
         const questions = [];
         for (let i = 0; i < 5; i += 1) {
@@ -31,14 +31,14 @@ const App = () => {
   }, []);
 
   const addQuestion = (question) => {
-    axios.post('/api/questions', question)
+    axios.post('http://localhost:3003/api/questions', question)
       .then(getQuestionList());
   };
   const processPost = (newQuestion) => {
     addQuestion(newQuestion);
   };
   const answerQuestion = (_id, answer) => {
-    axios.put(`/api/questions/${_id}`, answer)
+    axios.put(`http://localhost:3003/api/questions/${_id}`, answer)
       .then(getQuestionList());
   };
 
@@ -109,7 +109,7 @@ const App = () => {
       <button
         type="submit"
         className="showMore"
-        onClick={() => axios.get('http://localhost:3007/api/questions')
+        onClick={() => axios.get('http://localhost:3003/api/questions')
           .then(({ data }) => {
             const newQuestions = [];
             for (let i = lastQuestion + 1; i < lastQuestion + 6; i + 1) {
