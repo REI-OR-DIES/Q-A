@@ -21,27 +21,40 @@ const QuestionList = ({ questionList, answerQuestion }) => {
             className="question"
             key={question._id}
           >
-            <p className="author">{question.questionAuthor}</p>
-            <p className="title">{question.questionTitle}</p>
-            <p className="createdAt">{question.questionCreatedAt}</p>
-            <p className="questionBody">{question.questionBody}</p>
             <p className="numberOfAnswers">
-              Answers:
               {question.answers}
+              {' '}
+              <div answersNumberText>
+                answers
+              </div>
+
             </p>
+            <p className="author">{question.questionAuthor}</p>
+            <p className="createdAt">{question.questionCreatedAt}</p>
+            <p className="title">{question.questionTitle}</p>
+            <p className="questionBody">{question.questionBody}</p>
             <div>
+              <button
+                type="submit"
+                className="answerQuestion"
+                onClick={() => {
+                  setCurrentQuestion(question);
+                  setIsAnsweringQuestion(question);
+                }}
+              >
+                Answer the question
+              </button>
               {
                     question.answer !== undefined ? (
                       <div className="answer">
-                        Answer Author:
-                        <div className="answerAuthor">
-                          {question.answer.answerAuthor}
-                        </div>
-                        Title:
-                        <div className="answerTitle">
-                          {question.answer.answerTitle}
-                        </div>
-                        Answer:
+                        <span>
+                          <div className="answerAuthor">
+                            {question.answer.answerAuthor}
+                          </div>
+                          <div className="answerTitle">
+                            {question.answer.answerTitle}
+                          </div>
+                        </span>
                         <div className="answerBody">
                           {question.answer.answerBody}
                         </div>
@@ -63,6 +76,12 @@ const QuestionList = ({ questionList, answerQuestion }) => {
                             {' '}
                             {question.answer.answerHelpfulNo}
                           </button>
+                          <button
+                            className="reportAsInappropriate"
+                            type="submit"
+                          >
+                            Report as inappropriate
+                          </button>
                         </p>
 
                       </div>
@@ -70,16 +89,6 @@ const QuestionList = ({ questionList, answerQuestion }) => {
                       : <div />
                   }
             </div>
-            <button
-              type="submit"
-              className="answerQuestion"
-              onClick={() => {
-                setCurrentQuestion(question);
-                setIsAnsweringQuestion(question);
-              }}
-            >
-              Answer the question
-            </button>
             <div>
               <Modal isOpen={isAnsweringQuestion} onRequestClose={() => setIsAnsweringQuestion(false)}>
                 <p className="author">{currentQuestion.questionAuthor}</p>

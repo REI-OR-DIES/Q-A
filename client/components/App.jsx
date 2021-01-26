@@ -89,6 +89,7 @@ const App = () => {
             {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
           </label>
           <button
+            className="postQuestion"
             type="submit"
             onClick={() => processPost()}
           >
