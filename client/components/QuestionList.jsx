@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable max-len */
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable react/prop-types */
@@ -91,7 +92,7 @@ const QuestionList = ({ questionList, answerQuestion }) => {
                 >
                   Close
                 </button>
-                  </Modal>
+              </Modal>
 
             </div>
 
