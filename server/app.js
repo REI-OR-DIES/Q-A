@@ -1,9 +1,11 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
+const morgan = require('morgan');
 const api = require('./api');
 
 const app = express();
+app.use(morgan('dev'));
 app.use('/api', api);
 app.use(express.static(path.join(__dirname, '..', 'public')));
 app.use(bodyParser.json());

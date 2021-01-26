@@ -19,7 +19,7 @@ const App = () => {
     axios.get('http://localhost:3007/api/questions')
       .then(({ data }) => {
         const questions = [];
-        for (let i = 0; i < 5; i + 1) {
+        for (let i = 0; i < 5; i += 1) {
           questions.push(data[i]);
           setLastQuestion(i);
         }

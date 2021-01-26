@@ -12,35 +12,31 @@ const QuestionList = ({ questionList, answerQuestion }) => {
   const [answerUserName, setAnswerUserName] = useState(null);
 
   return (
-    <>
+    <div>
+      this is a test
       <div className="questionList">
         {
-        questionList.slice(0, 5).map(((question) => (
-
+        questionList.slice(0, 5).map((question) => (
           <div key={question._id}>
+            <p className="author">{question.questionAuthor}</p>
+            <p className="title">{question.questionTitle}</p>
+            <p className="createdAt">{question.questionCreatedAt}</p>
+            <p className="questionBody">{question.questionBody}</p>
+            <p className="numberOfAnswers">
+              Answers:
+              {question.answers}
+            </p>
+            <button
+              type="submit"
+              className="answerQuestion"
+              onClick={() => {
+                setCurrentQuestion(question);
+                setIsAnsweringQuestion(question);
+              }}
+            >
+              Answer the question
+            </button>
             <div>
-              <p className="author">{question.questionAuthor}</p>
-              <p className="title">{question.questionTitle}</p>
-              <p className="createdAt">{question.questionCreatedAt}</p>
-              <p className="questionBody">{question.questionBody}</p>
-              <p className="numberOfAnswers">
-                Answers:
-                {question.answers}
-              </p>
-              <button
-                type="submit"
-                className="answerQuestion"
-                onClick={() => {
-                  setCurrentQuestion(question);
-                  setIsAnsweringQuestion(question);
-                }}
-              >
-                Answer the question
-              </button>
-            </div>
-            <div>
-              { // eslint-disable-next-line max-len
-            }
               <Modal isOpen={isAnsweringQuestion} onRequestClose={() => setIsAnsweringQuestion(false)}>
                 <p className="author">{currentQuestion.questionAuthor}</p>
                 <p className="title">{currentQuestion.questionTitle}</p>
@@ -51,7 +47,7 @@ const QuestionList = ({ questionList, answerQuestion }) => {
                     event.preventDefault();
                   }}
                 >
-                  {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+
                   <label>
                     Answer Title:
                     <input
@@ -60,7 +56,7 @@ const QuestionList = ({ questionList, answerQuestion }) => {
                       onChange={(event) => setAnswerTitle(event.target.value)}
                     />
                   </label>
-                  {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+
                   <label>
                     Answer:
                     <input
@@ -69,7 +65,6 @@ const QuestionList = ({ questionList, answerQuestion }) => {
                       onChange={(event) => setAnswerBody(event.target.value)}
                     />
                   </label>
-                  {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
                   <label>
                     Nickname:
                     <input
@@ -97,18 +92,15 @@ const QuestionList = ({ questionList, answerQuestion }) => {
                 >
                   Close
                 </button>
-              </Modal>
+                  </Modal>
 
             </div>
-            )
-            ))
 
           </div>
-        )
         ))
         }
       </div>
-    </>
+    </div>
   );
 };
 
