@@ -13,11 +13,14 @@ const QuestionList = ({ questionList, answerQuestion }) => {
   const [answerUserName, setAnswerUserName] = useState(null);
 
   return (
-    <div>
-      <div className="questionList">
+    <div className="questionList">
+      <div>
         {
         questionList.slice(0, 5).map((question) => (
-          <div key={question._id}>
+          <div
+            className="question"
+            key={question._id}
+          >
             <p className="author">{question.questionAuthor}</p>
             <p className="title">{question.questionTitle}</p>
             <p className="createdAt">{question.questionCreatedAt}</p>
@@ -44,12 +47,22 @@ const QuestionList = ({ questionList, answerQuestion }) => {
                         </div>
                         <p>
                           Helpful?
-                          <div className="answerHelpfulYes">
+                          <button
+                            type="submit"
+                            className="answerHelpfulYes"
+                          >
+                            Yes
+                            {' '}
                             {question.answer.answerHelpfulYes}
-                          </div>
-                          <div className="answerHelpfulNo">
+                          </button>
+                          <button
+                            type="submit"
+                            className="answerHelpfulNo"
+                          >
+                            No
+                            {' '}
                             {question.answer.answerHelpfulNo}
-                          </div>
+                          </button>
                         </p>
 
                       </div>

@@ -44,7 +44,6 @@ const App = () => {
 
   return (
     <div>
-      <h1>Questions and Answers</h1>
       <button
         type="submit"
         className="askQuestion"
@@ -52,6 +51,7 @@ const App = () => {
       >
         Ask a question
       </button>
+      <h1>Questions &amp; Answers</h1>
       <Modal isOpen={isAskingQuestion} onRequestClose={() => setIsAskingQuestion(false)}>
         <h2>Ask a Question</h2>
         <form

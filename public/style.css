@@ -1,3 +1,37 @@
 body {
-  color: blue;
+  background-color:rgb(255, 255, 255);
+}
+
+.questionList {
+  border-top: solid thin black;
+  margin-top: 10px;
+}
+
+.question {
+  display: inline;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  margin-left: 10%;
+  margin-right: 10%;
+  font-family: 'Roboto', sans-serif;
+}
+
+.questionAuthor {
+  font-family: 'Roboto Mono', monospace;
+}
+
+.askQuestion {
+  position: absolute;
+  right: 10px;
+  width: 150px;
+  padding: 10px;
+  background-color: rgb(0, 113, 141);
+  color: white;
+}
+
+h1 {
+  font-family: 'Roboto Mono';
+  font-weight: 400;
+  letter-spacing: -.015rem;
+  line-height: 1;
 }
