@@ -16,7 +16,7 @@ const App = () => {
   const [lastQuestion, setLastQuestion] = useState(null);
 
   const getQuestionList = () => {
-    axios.get('http://localhost:3007/api/questions')
+    axios.get('http://localhost:3003/api/questions')
       .then(({ data }) => {
         const questions = [];
         for (let i = 0; i < 5; i += 1) {
@@ -31,20 +31,19 @@ const App = () => {
   }, []);
 
   const addQuestion = (question) => {
-    axios.post('/api/questions', question)
+    axios.post('http://localhost:3003/api/questions', question)
       .then(getQuestionList());
   };
   const processPost = (newQuestion) => {
     addQuestion(newQuestion);
   };
   const answerQuestion = (_id, answer) => {
-    axios.put(`/api/questions/${_id}`, answer)
+    axios.put(`http://localhost:3003/api/questions/${_id}`, answer)
       .then(getQuestionList());
   };
 
   return (
     <div>
-      <h1>Questions and Answers</h1>
       <button
         type="submit"
         className="askQuestion"
@@ -52,6 +51,7 @@ const App = () => {
       >
         Ask a question
       </button>
+      <h1>Questions &amp; Answers</h1>
       <Modal isOpen={isAskingQuestion} onRequestClose={() => setIsAskingQuestion(false)}>
         <h2>Ask a Question</h2>
         <form
@@ -89,6 +89,7 @@ const App = () => {
             {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
           </label>
           <button
+            className="postQuestion"
             type="submit"
             onClick={() => processPost()}
           >
@@ -109,10 +110,11 @@ const App = () => {
       <button
         type="submit"
         className="showMore"
-        onClick={() => axios.get('http://localhost:3007/api/questions')
+        onClick={(event) => axios.get('http://localhost:3003/api/questions')
           .then(({ data }) => {
+            event.preventDefault();
             const newQuestions = [];
-            for (let i = lastQuestion + 1; i < lastQuestion + 6; i + 1) {
+            for (let i = lastQuestion + 1; i < lastQuestion + 6; i += 1) {
               newQuestions.push(data[i]);
               setLastQuestion(i);
             }
