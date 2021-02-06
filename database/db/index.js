@@ -1,75 +1,42 @@
-/* eslint-disable no-console */
+const pool = require('./dbData.js');
 
-const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost:27017/REI', {
-  useNewUrlParser: true, useUnifiedTopology: true,
-})
-  .then(() => console.log('success connecting to REI mongoose db'))
-  .catch(() => console.log('error connecting to REI mongoose db'));
 
-const qaSchema = mongoose.Schema({
-  questionAuthor: String,
-  questionTitle: String,
-  questionCreatedAt: Date,
-  questionBody: String,
-  answers: Number,
-  answer: {
-    answerTitle: String,
-    answerAuthor: String,
-    answerCreatedAt: Date,
-    answerBody: String,
-    answerHelpfulYes: Number,
-    answerHelpfulNo: Number,
-  },
-});
-
-const Qa = mongoose.model('Qa', qaSchema);
-
-const findAllQuestions = (callback) => {
-  Qa.find({}, (err, results) => {
+const findAllQuestions = (req, res) => {
+  pool.query('SELECT * FROM questions', (err, results) => {
     if (err) {
-      callback(err, null);
+      res.status(500).send(err);
     } else {
-      callback(null, results);
-    }
-  });
-};
-const addNewQuestion = (question, callback) => {
-  Qa.create({
-    questionAuthor: question.questionAuthor,
-    questionTitle: question.questionTitle,
-    questionCreatedAt: question.questionCreatedAt,
-    questionBody: question.questionBody,
-    answers: question.answers,
-    answer: question.answer,
-  }, (err, results) => {
-    if (err) {
-      callback(err, null);
-    } else {
-      callback(null, results);
+      res.status(200).send(results.rows);
     }
   });
 };
 
-const incrementAnswersValue = (id) => {
-  Qa.findOneAndUpdate({ _id: id }, { $inc: { answers: 1 } }).exec();
-};
-
-const answerQuestion = (questionId, newAnswer, callback) => {
-  Qa.findOneAndUpdate({ _id: questionId }, { $set: { answer: newAnswer } }, (err, results) => {
+const addNewQuestion = (req, res) => {
+  const { questionAuthor, questionTitle, questionBody } = req.body;
+  pool.query('INSERT INTO questions (questionAuthor, questionTitle, questionBody) VALUES ($1, $2, $3)', [questionAuthor, questionTitle, questionBody], (err, results) => {
     if (err) {
-      callback(err, null);
+      res.status(500).send(err);
     } else {
-      incrementAnswersValue(questionId);
-      callback(null, results);
+      res.status(200).send(results);
     }
   });
 };
+
+
+
+// const answerQuestion = (questionId, newAnswer, callback) => {
+//   Qa.findOneAndUpdate({ _id: questionId }, { $set: { answer: newAnswer } }, (err, results) => {
+//     if (err) {
+//       callback(err, null);
+//     } else {
+//       incrementAnswersValue(questionId);
+//       callback(null, results);
+//     }
+//   });
+// };
 
 module.exports = {
-  Qa,
   findAllQuestions,
-  addNewQuestion,
-  answerQuestion,
+  addNewQuestion
 };
