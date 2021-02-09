@@ -6,23 +6,23 @@ CREATE DATABASE q_and_a;
 
 CREATE TABLE IF NOT EXISTS questions (
   id SERIAL PRIMARY KEY,
-  questionAuthor VARCHAR,
-  questionTitle VARCHAR,
-  questionCreatedAt TIMESTAMP,
-  questionBody VARCHAR
+  questionAuthor TEXT,
+  questionTitle TEXT,
+  questionCreatedAt TEXT,
+  questionBody TEXT
 );
 
 CREATE TABLE IF NOT EXISTS answers (
   id SERIAL PRIMARY KEY,
-  answerAuthor VARCHAR,
-  answerTitle VARCHAR,
-  answerCreatedAt TIMESTAMP,
-  answerBody VARCHAR,
+  answerAuthor TEXT,
+  answerTitle TEXT,
+  answerCreatedAt TEXT,
+  answerBody TEXT,
   question_id INTEGER REFERENCES questions(id),
   answerHelpfulYes INTEGER,
   answerHelpfulNo INTEGER
 );
 
--- INSERT INTO questions (questionAuthor, questionTitle, questionBody) VALUES ('author', 'bici', 'this is good'), ('secondTest', 'carro', 'so wonderful');
-
--- INSERT INTO answers (answerAuthor, answerTitle, answerBody, question_id, answerHelpfulYes, answerHelpfulNo) VALUES ('author', 'bici', 'this is good', 1, 2, 3), ('secondTest', 'carro', 'so wonderful', 1, 5, 9);
+-- pg_ctl -D /usr/local/var/psql -l logfile start
+-- pg_ctl -D /usr/local/var/psql -l logfile stop
+-- psql -f schema.sql
