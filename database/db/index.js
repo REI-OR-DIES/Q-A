@@ -3,13 +3,18 @@ const pool = require('./dbData.js');
 
 
 const findAllQuestions = (req, res) => {
-  pool.query('SELECT * FROM questions', (err, results) => {
-    if (err) {
-      res.status(500).send(err);
-    } else {
-      res.status(200).send(results.rows);
-    }
-  });
+  pool.query('SELECT * FROM questions WHERE id < 10')
+    .then(results => {
+      results.rows.forEach((item, i) => {
+        item.answer = [];
+        pool.query('SELECT * FROM answers WHERE question_id = $1',  [item.id])
+          .then(data => {
+            item.answer.push(data.rows);
+            if (i === results.rows.length - 1) res.status(200).send(results.rows)
+          });
+      });
+  })
+  .catch(error => res.status(500).send(error));
 };
 
 const addNewQuestion = (req, res) => {

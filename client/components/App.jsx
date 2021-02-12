@@ -20,6 +20,7 @@ const App = () => {
       .then(({ data }) => {
         const questions = [];
         for (let i = 0; i < 5; i += 1) {
+          console.log( 'this data:', data[i]);
           questions.push(data[i]);
           setLastQuestion(i);
         }

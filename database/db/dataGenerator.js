@@ -19,11 +19,13 @@ const dataGenerator = (n) => {
     let questions = [];
     let answers = [];
     let randNum = Math.floor(Math.random() * 10);
+    let numberOfAnswers = 0;
 
     // generates 0 - 9 random secondary records per primary record
     let recurse = (counter) => {
       if (counter !== randNum) {
         counter++;
+        numberOfAnswers++;
       let ans = {
         answerAuthor: faker.name.firstName(),
         answerTitle: faker.random.words(),
@@ -43,7 +45,8 @@ const dataGenerator = (n) => {
       questionAuthor: faker.name.firstName(),
       questionTitle: faker.random.words(),
       questionBody: faker.lorem.paragraph(),
-      questionCreatedAt: faker.date.between('2020-11-01', '2021-01-01')
+      questionCreatedAt: faker.date.between('2020-11-01', '2021-01-01'),
+      answers: numberOfAnswers
     };
     questions.push(quest);
 

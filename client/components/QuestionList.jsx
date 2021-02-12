@@ -9,10 +9,9 @@ import Moment from 'react-moment';
 const QuestionList = ({ questionList, answerQuestion }) => {
   const [isAnsweringQuestion, setIsAnsweringQuestion] = useState(false);
   const [currentQuestion, setCurrentQuestion] = useState({});
-  const [answerTitle, setAnswerTitle] = useState(null);
-  const [answerBody, setAnswerBody] = useState(null);
-  const [answerUserName, setAnswerUserName] = useState(null);
-
+  const [answertitle, setAnswerTitle] = useState(null);
+  const [answerbody, setAnswerBody] = useState(null);
+  const [answeruserName, setAnswerUserName] = useState(null);
   return (
     <div className="questionList">
       <div>
@@ -20,7 +19,7 @@ const QuestionList = ({ questionList, answerQuestion }) => {
         questionList.slice(0, 5).map((question) => (
           <div
             className="question"
-            key={question._id}
+            key={question.id}
           >
             <p className="numberOfAnswers">
               {question.answers}
@@ -34,12 +33,12 @@ const QuestionList = ({ questionList, answerQuestion }) => {
               className="headUnit"
             >
               <div className="grid-container">
-                <p className="author">{question.questionAuthor}</p>
-                <p className="createdAt"><Moment fromNow>{question.questionCreatedAt}</Moment></p>
+                <p className="author">{question.questionauthor}</p>
+                <p className="createdAt"><Moment fromNow>{question.questioncreatedat}</Moment></p>
               </div>
             </div>
-            <p className="title">{question.questionTitle}</p>
-            <p className="questionBody">{question.questionBody}</p>
+            <p className="title">{question.questiontitle}</p>
+            <p className="questionBody">{question.questionbody}</p>
             <div>
               <button
                 type="submit"
@@ -52,18 +51,18 @@ const QuestionList = ({ questionList, answerQuestion }) => {
                 Answer the question
               </button>
               {
-                    question.answer !== undefined ? (
+                    question.answer[0][0] !== undefined ? (
                       <div className="answer">
                         <span>
                           <div className="answerAuthor">
-                            {question.answer.answerAuthor}
+                            {question.answer[0][0].answerauthor}
                           </div>
                           <div className="answerTitle">
-                            {question.answer.answerTitle}
+                            {question.answer[0][0].answertitle}
                           </div>
                         </span>
                         <div className="answerBody">
-                          {question.answer.answerBody}
+                          {question.answer[0][0].answerbody}
                         </div>
                         <p>
                           Helpful?
@@ -73,7 +72,7 @@ const QuestionList = ({ questionList, answerQuestion }) => {
                           >
                             Yes
                             {' '}
-                            {question.answer.answerHelpfulYes}
+                            {question.answer[0][0].answerhelpfulyes}
                           </button>
                           <button
                             type="submit"
@@ -81,7 +80,7 @@ const QuestionList = ({ questionList, answerQuestion }) => {
                           >
                             No
                             {' '}
-                            {question.answer.answerHelpfulNo}
+                            {question.answer[0][0].answerhelpfulno}
                           </button>
                           <button
                             className="reportAsInappropriate"
@@ -98,10 +97,10 @@ const QuestionList = ({ questionList, answerQuestion }) => {
             </div>
             <div>
               <Modal isOpen={isAnsweringQuestion} onRequestClose={() => setIsAnsweringQuestion(false)}>
-                <p className="author">{currentQuestion.questionAuthor}</p>
-                <p className="title">{currentQuestion.questionTitle}</p>
-                <p className="createdAt"><Moment fromNow>{question.questionCreatedAt}</Moment></p>
-                <p className="questionBody">{currentQuestion.questionBody}</p>
+                <p className="author">{currentQuestion.questionauthor}</p>
+                <p className="title">{currentQuestion.questiontitle}</p>
+                <p className="createdAt"><Moment fromNow>{question.questioncreatedat}</Moment></p>
+                <p className="questionBody">{currentQuestion.questionbody}</p>
                 <form
                   onSubmit={(event) => {
                     event.preventDefault();
@@ -137,9 +136,9 @@ const QuestionList = ({ questionList, answerQuestion }) => {
                     type="submit"
                     onClick={() => {
                       answerQuestion(currentQuestion._id, {
-                        answerTitle,
-                        answerBody,
-                        answerUserName,
+                        answertitle,
+                        answerbody,
+                        answeruserName,
                       });
                     }}
                   >
