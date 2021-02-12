@@ -3,3 +3,5 @@ node_modules/
 /public/bundle.js
 /database/db/answers.csv
 /database/db/questions.csv
+/newrelic.js
+/newrelic_agent.log

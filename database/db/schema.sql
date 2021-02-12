@@ -8,17 +8,18 @@ CREATE TABLE IF NOT EXISTS questions (
   id SERIAL PRIMARY KEY,
   questionAuthor TEXT,
   questionTitle TEXT,
+  questionBody TEXT,
   questionCreatedAt TEXT,
-  questionBody TEXT
+  answers INTEGER
 );
 
 CREATE TABLE IF NOT EXISTS answers (
   id SERIAL PRIMARY KEY,
   answerAuthor TEXT,
   answerTitle TEXT,
-  answerCreatedAt TEXT,
   answerBody TEXT,
   question_id INTEGER REFERENCES questions(id),
+  answerCreatedAt TEXT,
   answerHelpfulYes INTEGER,
   answerHelpfulNo INTEGER
 );
